@@ -34,7 +34,7 @@ namespace WinFormsApp1.Objecrs
             return matrix;
         }
 
-        public virtual void Intersections(BaseObject obj)  //абстрактный метод
+        public virtual void Intersections(BaseObject obj)  
         {
             if (this.Intersec != null)
             {

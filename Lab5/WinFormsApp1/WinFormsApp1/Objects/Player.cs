@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,7 +38,31 @@ namespace WinFormsApp1.Objecrs
                 return true;
             }
             return false;
-        }       
+        }    
+        
+        public void Update(Marker marker)
+        {
+            if (marker.exist==true)
+            {
+                float dx=marker.X-this.X;
+                float dy=marker.Y-this.Y;
+            
+                float lenght = (float)MathF.Sqrt(dx*dx + dy*dy);
+                dx/=lenght;
+                dy/=lenght;
+
+                this.X+= dx*2;
+                this.Y+= dy*2;           
+            
+                this.vX += dx * 0.5f; 
+                this.vY += dy * 0.5f;
+                this.Angle = 90 - MathF.Atan2(this.vX, this.vY) * 180 / MathF.PI;
+            }
+            this.vX += -this.vX * 0.1f;
+            this.vY += -this.vY * 0.1f;
+            this.X += this.vX;
+            this.Y += this.vY;
+        }
         
     }
 }
